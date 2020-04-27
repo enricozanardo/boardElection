@@ -1,0 +1,30 @@
+{
+  "name": "boardElection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:build": "tsc -w",
+    "start:run": "nodemon build /build/index.js",
+    "start": "concurrently npm:start:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onezerobinary/boardElection.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onezerobinary/boardElection/issues"
+  },
+  "homepage": "https://github.com/onezerobinary/boardElection#readme",
+  "dependencies": {
+    "@types/hasha": "^3.0.1",
+    "@types/lodash": "^4.14.150",
+    "concurrently": "^5.2.0",
+    "hasha": "^5.2.0",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.3"
+  }
+}
