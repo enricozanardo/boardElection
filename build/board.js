@@ -27,10 +27,10 @@ function getTickets(hash, numberOfTickets, accumulator) {
         console.log(`Part 2: ${part2}`);
         console.log(`Part 3: ${part3}`);
         console.log(`Part 4: ${part4}`);
-        console.log(`Part 4: ${part5}`);
-        console.log(`Part 4: ${part6}`);
-        console.log(`Part 4: ${part7}`);
-        console.log(`Part 4: ${part8}`);
+        console.log(`Part 5: ${part5}`);
+        console.log(`Part 6: ${part6}`);
+        console.log(`Part 7: ${part7}`);
+        console.log(`Part 8: ${part8}`);
         const partsHex = [part1, part2, part3, part4, part5, part6, part7, part8];
         const partsBinary = [];
         partsHex.map((part) => {
@@ -56,9 +56,9 @@ function getTickets(hash, numberOfTickets, accumulator) {
         console.log('Partial Result 4: ' + partialResult4);
         const partialResult5 = function_1.binaryXOR(partialResult1, partialResult2);
         const partialResult6 = function_1.binaryXOR(partialResult3, partialResult4);
-        console.log('Partial Result 3: ' + partialResult5);
-        console.log('Partial Result 4: ' + partialResult6);
-        console.log(`5. Compute the XOR between [partial resutl 1 and partial result 2]`);
+        console.log('Partial Result 5: ' + partialResult5);
+        console.log('Partial Result 6: ' + partialResult6);
+        console.log(`5. Compute the XOR between [partial result 1 and partial result 2]`);
         const finalBinaryResult = function_1.binaryXOR(partialResult5, partialResult6);
         console.log('Final Result    : ' + finalBinaryResult);
         console.log(`6. Trasform the Binary number into a decimal number and compute the modulo N function`);
@@ -88,9 +88,19 @@ function doStatistics() {
         data.push({ key: hash, value: tickets });
     }
     // console.log(JSON.stringify(data));
+    console.log(data);
+    let plt = [];
     data.map((stat) => {
         // console.log(`Data Results: ${stat.key} - ${stat.value}`);
         console.log(lodash_1.default.groupBy(stat.value));
+        console.log(stat.value);
+        plt.push(stat.value);
     });
+    const ls_dict = [];
+    plt.map((ls) => {
+        ls_dict.push(lodash_1.default.groupBy(ls));
+    });
+    console.log(ls_dict);
+    return ls_dict;
 }
 exports.doStatistics = doStatistics;

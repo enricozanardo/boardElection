@@ -25,6 +25,7 @@
     "concurrently": "^5.2.0",
     "hasha": "^5.2.0",
     "lodash": "^4.17.15",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "plotly.js": "^1.53.0"
   }
 }

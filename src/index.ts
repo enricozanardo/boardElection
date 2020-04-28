@@ -1,3 +1,8 @@
-import { doStatistics } from './board';
+import { doStatistics } from "./board"
+import { Dictionary } from "lodash";
 
-doStatistics();
+ doStatistics();
+
+ 
+
+

@@ -1,13 +1,14 @@
 import { hexToBinary, binaryXOR } from './function';
 import hasha from 'hasha';
 
-import _ from 'lodash';
+import _, { Dictionary } from 'lodash';
 
 // const hash = '4ceb86317d0d4dac6853663589ef02ccb67134cee75bb886a4410b7aedd0e109';
 const prev_hash =
   '6bb1c89598c75ba1d4ee138091b51b5e905212cf1ffc4242b0d26545597154e3';
 
 type Ticket = number;
+
 
 function getTickets(
   hash: string,
@@ -36,10 +37,10 @@ function getTickets(
     console.log(`Part 2: ${part2}`);
     console.log(`Part 3: ${part3}`);
     console.log(`Part 4: ${part4}`);
-    console.log(`Part 4: ${part5}`);
-    console.log(`Part 4: ${part6}`);
-    console.log(`Part 4: ${part7}`);
-    console.log(`Part 4: ${part8}`);
+    console.log(`Part 5: ${part5}`);
+    console.log(`Part 6: ${part6}`);
+    console.log(`Part 7: ${part7}`);
+    console.log(`Part 8: ${part8}`);
 
     const partsHex = [part1, part2, part3, part4, part5, part6, part7, part8];
     const partsBinary: string[] = [];
@@ -77,11 +78,11 @@ function getTickets(
     const partialResult5 = binaryXOR(partialResult1, partialResult2);
     const partialResult6 = binaryXOR(partialResult3, partialResult4);
 
-    console.log('Partial Result 3: ' + partialResult5);
-    console.log('Partial Result 4: ' + partialResult6);
+    console.log('Partial Result 5: ' + partialResult5);
+    console.log('Partial Result 6: ' + partialResult6);
 
     console.log(
-      `5. Compute the XOR between [partial resutl 1 and partial result 2]`
+      `5. Compute the XOR between [partial result 1 and partial result 2]`
     );
 
     const finalBinaryResult = binaryXOR(partialResult5, partialResult6);
@@ -117,10 +118,12 @@ type Data = {
   value: Ticket[];
 };
 
-export function doStatistics(): void {
+
+export function doStatistics(): Array<Dictionary<number[]>> {
   const data: Data[] = [];
   const iteractions = 3;
   const numberOfTickets = 1000;
+  
 
   for (let i = 0; i < iteractions; i++) {
     let random =
@@ -134,8 +137,23 @@ export function doStatistics(): void {
 
   // console.log(JSON.stringify(data));
 
+  console.log(data)
+
+  let plt: Array<number[]> = [];
   data.map((stat) => {
     // console.log(`Data Results: ${stat.key} - ${stat.value}`);
     console.log(_.groupBy(stat.value));
+    console.log(stat.value)
+    plt.push(stat.value)
   });
+
+  const ls_dict: Array<Dictionary<number[]>> = [];
+  plt.map( (ls) => {
+    ls_dict.push(_.groupBy(ls))
+  })
+  console.log(ls_dict)
+  return ls_dict
 }
+
+
+

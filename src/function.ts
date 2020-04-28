@@ -47,3 +47,4 @@ export function binaryXOR(s1: string, s2: string): string {
   }
   return result;
 }
+
