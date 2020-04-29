@@ -120,7 +120,7 @@ type Data = {
 export function doStatistics(): void {
   const data: Data[] = [];
   const iteractions = 3;
-  const numberOfTickets = 1000;
+  const numberOfTickets = 10;
 
   for (let i = 0; i < iteractions; i++) {
     let random =
