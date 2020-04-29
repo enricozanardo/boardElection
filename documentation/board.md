@@ -57,4 +57,9 @@ Ticket n. 680 is the Leader of the Election.
 ## 4. Board Members
 
 We could have several approaches to define the board members. For instance we could run the functions described into point 3 in a deterministic way (like splitting the hash in different parts) or more easily starting from the Leader ticket simple count another m (number of board members) consecutive tickets (ex. 681, 682, ... m-1, m).
-The fact that they are consecutive tickets do not matter because they are representing points that are far away one to each other. 
+The fact that they are consecutive tickets do not matter because they are representing points that are far away one to each other.
+
+## Is the Board Election a pseudorandom generator?
+
+In order to proof the tickets exctraction is an event uniformly distributed, we made some experiments by simulating the Board Election. In particular, it was choose to perform three independent experiments in which each simulated extraction is performed a number of 1000 times, such that for each simulation a total of 3000 tickets is obtained. We performed three such simulation for a total of nine experiments. 
+

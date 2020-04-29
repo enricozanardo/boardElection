@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const board_1 = require("./board");
 const lodash_1 = __importDefault(require("lodash"));
-var plotly = require('plotly')('chelless788', '0Uz1T8UbZUZzBkFt5j8M');
+var plotly = require('plotly')('chelless788', 'ZXtEkH2xIzKdrOtQa4EC');
 const ls_num = board_1.doStatistics();
 /*
 let x1 = ls_num[0].value;

@@ -4,7 +4,7 @@ import _, { Dictionary } from "lodash";
 
 
 
-var plotly = require('plotly')('chelless788', '0Uz1T8UbZUZzBkFt5j8M')
+var plotly = require('plotly')('chelless788', 'ZXtEkH2xIzKdrOtQa4EC')
 
 const ls_num = doStatistics();
 
@@ -21,8 +21,8 @@ let trace1 = {
     marker: {
         color: "red", 
         line: {
-            color:  "grey", 
-            width: 0
+            color:  "red", 
+            width: 0.2
         }
     },  
    opacity: 0.75, 
@@ -42,7 +42,7 @@ let trace2 = {
         color: "green",
         line: {
             color:  "blue", 
-            width: 0
+            width: 0.2
         } 
     }, 
    name: "Experiment 2", 
@@ -62,8 +62,8 @@ let trace3 = {
     marker: {
         color: "blue",
         line: {
-           color:  "rgb(184, 132, 11)", 
-            width: 0
+           color:  "blue", 
+            width: 0.2
         } 
     }, 
    name: "Experiment 3", 
@@ -127,7 +127,7 @@ let trace_y1 = {
         color: "red", 
         line: {
             color:  "red", 
-            width: 0
+            width: 0.2
         }
     },  
    opacity: 0.75, 
@@ -147,7 +147,7 @@ let trace_y2 = {
         color: "blue",
         line: {
             color:  "blue", 
-            width: 0
+            width: 0.2
         } 
     }, 
    name: "Experiment 2", 
@@ -168,7 +168,7 @@ let trace_y3 = {
         color: "green",
         line: {
             color:  "green", 
-            width: 0
+            width: 0.2
         } 
     }, 
    name: "Experiment 3", 
