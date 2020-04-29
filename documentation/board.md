@@ -68,7 +68,7 @@ In order to proof the tickets exctraction is an event uniformly distributed, we 
 ![plot_form_API_3](plots/plot_from_API_3.png)
 
 For greater clarity, we plot also the Comulative Density Function (CDF) of the tickets. As expected, it shows a linear trend, with a really narrow error.
-![CDF_Board_Election](CDF_Board_Election.png)
+![CDF_Board_Election](plots/CDF_Board_Election.png)
 
 Finally, the CDF of the counts is showed. Over the 80% of tickets have been chosen a maximum of two consecutive times. 
 
