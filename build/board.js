@@ -101,6 +101,6 @@ function doStatistics() {
         ls_dict.push(lodash_1.default.groupBy(ls));
     });
     console.log(ls_dict);
-    return ls_dict;
+    return data;
 }
 exports.doStatistics = doStatistics;

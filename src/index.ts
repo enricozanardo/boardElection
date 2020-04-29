@@ -1,11 +1,110 @@
 import { doStatistics } from "./board"
-import { Dictionary } from "lodash";
+import _, { Dictionary } from "lodash";
 
- doStatistics();
 
+
+
+var plotly = require('plotly')('chelless788', '0Uz1T8UbZUZzBkFt5j8M')
+
+const ls_num = doStatistics();
+
+/*
+let x1 = ls_num[0].value;
+let x2 = ls_num[1].value;
+let x3 = ls_num[2].value;
+// Histogram X
+let trace1 = {
+    x: x1,
+    name: 'Experiment 1',
+    autobinx: false, 
+    histnorm: "count", 
+    marker: {
+        color: "red", 
+        line: {
+            color:  "grey", 
+            width: 0
+        }
+    },  
+   opacity: 0.75, 
+   type: "histogram", 
+   xbins: {
+       end: 1000, 
+       size: 1, 
+       start: 0
+    }
+};
  
-const ls_dict = doStatistics();
+let trace2 = {
+    x: x2,
+    autobinx: false, 
+    histnorm: 'count',
+    marker: {
+        color: "green",
+        line: {
+            color:  "blue", 
+            width: 0
+        } 
+    }, 
+   name: "Experiment 2", 
+   opacity: 0.75, 
+   type: "histogram", 
+   xbins: { 
+       end: 1000, 
+       size: 1, 
+       start: 0
+    }
+};
 
+let trace3 = {
+    x: x3,
+    histnorm: "count",
+    autobinx: false, 
+    marker: {
+        color: "blue",
+        line: {
+           color:  "rgb(184, 132, 11)", 
+            width: 0
+        } 
+    }, 
+   name: "Experiment 3", 
+   opacity: 0.75, 
+   type: "histogram", 
+   xbins: { 
+       end: 1000, 
+       size: 1, 
+       start: 0
+    }
+};
+ 
+let data = [trace1, trace2, trace3];
+
+let layout = {
+    bargap: 0.25, 
+    bargroupgap: 0.3, 
+    barmode: "overlay", 
+    title: "Sampled Results: Board Election Histogram Chart 3", 
+    xaxis: {title: "Value"}, 
+    yaxis: {title: "Count"}
+}
+
+var graphOptions = {layout: layout, filenam: "overlaid-histogram", fileopt: 'overwrite'};
+
+
+plotly.plot(data, graphOptions, function (err: any, msg: any) {
+  if (err) return console.log('Error: '+ err);
+  console.log(msg)
+});
+
+*/
+
+let plt: Array<number[]> = [];
+ls_num.map((stat) => {
+plt.push(stat.value)
+  });
+const ls_dict: Array<Dictionary<number[]>> = [];
+plt.map( (ls) => {
+    ls_dict.push(_.groupBy(ls))
+  })
 
 let ls_x: Array<number[]> = [[], [], []];
 let ls_y: Array<number[]> = [[], [], []];
@@ -17,82 +116,87 @@ for (let ls_ of ls_dict) {
     }
    i++;
  }
- //console.log(ls_x, ls_y)
 
- // Histogram
-let trace1 = {
-    x: ls_x[0],
-    y: ls_y[0],
+// Histogram Y
+let trace_y1 = {
+    x: ls_y[0],
     name: 'Experiment 1',
     autobinx: false, 
     histnorm: "count", 
     marker: {
-        color: "rgba(255, 100, 102, 0.7)", 
+        color: "red", 
         line: {
-            color:  "rgba(255, 100, 102, 1)", 
-            width: 1
+            color:  "red", 
+            width: 0
         }
     },  
-   opacity: 0.5, 
+   opacity: 0.75, 
    type: "histogram", 
    xbins: {
-       end: 2.8, 
-       size: 0.06, 
-       start: .5
+       end: 1000, 
+       size: 1, 
+       start: 0
     }
 };
  
-let trace2 = {
-    x: ls_x[1],
-    y: ls_y[1], 
+let trace_y2 = {
+    x: ls_y[1],
     autobinx: false, 
+    histnorm: 'count',
     marker: {
-        color: "rgba(100, 200, 102, 0.7)",
+        color: "blue",
         line: {
-            color:  "rgba(100, 200, 102, 1)", 
-            width: 1
+            color:  "blue", 
+            width: 0
         } 
     }, 
    name: "Experiment 2", 
    opacity: 0.75, 
    type: "histogram", 
    xbins: { 
-       end: 4, 
-       size: 0.06, 
-       start: -3.2
+       end: 1000, 
+       size: 1, 
+       start: 0
     }
 };
- 
-let trace3 = {
-    x: ls_x[2],
-    y: ls_y[2], 
+
+let trace_y3 = {
+    x: ls_y[2],
+    histnorm: "count",
     autobinx: false, 
     marker: {
-        color: "rgba(100, 200, 102, 0.7)",
+        color: "green",
         line: {
-            color:  "rgba(100, 200, 102, 1)", 
-            width: 1
+            color:  "green", 
+            width: 0
         } 
     }, 
    name: "Experiment 3", 
    opacity: 0.75, 
    type: "histogram", 
    xbins: { 
-       end: 4, 
-       size: 0.06, 
-       start: -3.2
+       end: 1000, 
+       size: 1, 
+       start: 0
     }
 };
  
-let data = [trace1, trace2, trace3];
-let layout = {
-    bargap: 0.05, 
-    bargroupgap: 0.2, 
+let data_y = [trace_y1, trace_y2, trace_y3];
+
+let layout_y = {
+    bargap: 0.25, 
+    bargroupgap: 0.3, 
     barmode: "overlay", 
-    title: "Sampled Results", 
+    title: "Sampled Results: Board Election Histogram Chart [Y 1]", 
     xaxis: {title: "Value"}, 
     yaxis: {title: "Count"}
 }
- 
-//Plotly.newPlot('hist-plot', data, layout);
+
+var graphOptions_y = {layout: layout_y, filename: "overlaid-histogram_y", fileopt: 'overwrite_y'};
+
+
+plotly.plot(data_y, graphOptions_y, function (err: any, msg: any) {
+  if (err) return console.log('Error: '+ err);
+  console.log(msg)
+});
 

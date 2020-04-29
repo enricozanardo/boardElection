@@ -119,7 +119,7 @@ type Data = {
 };
 
 
-export function doStatistics(): Array<Dictionary<number[]>> {
+export function doStatistics(): Data[] {
   const data: Data[] = [];
   const iteractions = 3;
   const numberOfTickets = 1000;
@@ -136,7 +136,7 @@ export function doStatistics(): Array<Dictionary<number[]>> {
   }
 
   // console.log(JSON.stringify(data));
-
+  
   console.log(data)
 
   let plt: Array<number[]> = [];
@@ -152,7 +152,7 @@ export function doStatistics(): Array<Dictionary<number[]>> {
     ls_dict.push(_.groupBy(ls))
   })
   console.log(ls_dict)
-  return ls_dict
+  return data
 }
 
 
