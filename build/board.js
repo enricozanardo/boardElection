@@ -78,7 +78,7 @@ function getTickets(hash, numberOfTickets, accumulator) {
 function doStatistics() {
     const data = [];
     const iteractions = 3;
-    const numberOfTickets = 1000;
+    const numberOfTickets = 10;
     for (let i = 0; i < iteractions; i++) {
         let random = Math.random().toString(36).substring(2, 15) +
             Math.random().toString(36).substring(2, 15);
