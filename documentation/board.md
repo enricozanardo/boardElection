@@ -61,16 +61,18 @@ The fact that they are consecutive tickets do not matter because they are repres
 
 ## Is the Board Election a pseudorandom generator?
 
-In order to proof the tickets exctraction is an event uniformly distributed, we made some experiments by simulating the Board Election. In particular, it was choose to perform three independent experiments in which each simulated extraction is performed a number of 1000 times, such that for each simulation a total of 3000 tickets is obtained. We performed three such simulation for a total of nine experiments. For each of these experiments we exctract the number of times the same ticket has been extracted, in order to build an histogram. For all histograms, on the x axis there are the number of the tickets extracted, while on the y axis there are the number of times the same ticket has been extracted. In the first simulation, the maximum number of times the same ticket was extracted is six, and this event happened only for the experiment 3. The same number was exctracted five times only in the experiment two, while the same number was extracted four time in all three experiment, four times in both experiment 2 and 3, three times in experiment 1. The others histograms follow more or less the same trend.
+In order to verify that the tickets exctraction is an uniformly distributed event, we made some simulations of the Board Election. In particular, each simulation is composed as follows: there are three independent lotteries, in each of them 1000 tickets are extracted.  We performed five of such simulations for a total of nine independent lotteries. For each simulation we show the corresponding histogram chart. 
 
-![board_hist_1](plots/board_hist_1.png)
-![plot_from_API_4](plots/plot_from_API_4.png)
-![plot_form_API_3](plots/plot_from_API_3.png)
+![hist_sim_1](plots/hist_sim_1.png)
+![hist_sim_2](plots/hist_sim_2.png)
+![hist_sim_3](plots/hist_sim_3.png)
+![hist_sim_4](plots/hist_sim_4.png)
+![hist_sim_5](plots/hist_sim_5.png)
 
-For greater clarity, we plot also the Comulative Density Function (CDF) of the tickets. As expected, it shows a linear trend, with a really narrow error.
+The Comulative Density Function (CDF) of a uniform random variable is a line in the plane. We plot the CDF of the tickets, just for the first simulation, since it follows always the same trend even for the other simulations. As expected, it shows a linear trend, with a really narrow error. 
 ![CDF_Board_Election](plots/CDF_Board_Election.png)
 
-Finally, the CDF of the counts is showed. Over the 80% of tickets have been chosen a maximum of two consecutive times. 
+Finally, the CDF of the counts is showed (again just of the first simulation). Over the 80% of tickets have been chosen a maximum of two consecutive times. 
 
 ![cdf_count](plots/cdf_count.png)
 
