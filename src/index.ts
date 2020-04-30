@@ -1,8 +1,15 @@
+
 import { doStatistics } from "./board"
 import _, { Dictionary } from "lodash";
+import { writeFile } from "fs";
 
 
-var plotly = require('plotly')('chelless788', 'ZXtEkH2xIzKdrOtQa4EC')
+const js2csv = require('json2csv').parse;
+const fs = require('fs')
+const res = require('express')
+
+
+//var plotly = require('plotly')('chelless788', 'ZXtEkH2xIzKdrOtQa4EC')
 const ls_num = doStatistics();
 
 
@@ -10,6 +17,86 @@ let x1 = ls_num[0].value;
 let x2 = ls_num[1].value;
 let x3 = ls_num[2].value;
 
+//type MyData = {
+//    'key': string;
+//    'value': number[];
+//};
+
+//let myData: MyData[] = [];
+
+interface MyData {
+    exp: string;
+    value: number[]
+}
+
+const myData: MyData[] = [];
+
+myData.push({exp: 'exp1', value: x1})
+myData.push({exp: 'exp2', value: x2})
+myData.push({exp: 'exp3', value: x3})
+console.log('myData: ' + myData)
+console.log(myData)
+
+//const json = JSON.stringify(myData)
+//console.log('JSON')
+//console.log(json)
+
+
+const fields = ['exp', 'value'];
+const opts = { fields }
+
+
+const csv = js2csv(myData, fields);
+fs.writeFile('documentation/csv/sim_1.csv', csv, function (err: any){
+    if (err) throw err;
+    console.log('saved!');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 // Histogram X
 let trace1 = {
     x: x1,
@@ -197,5 +284,4 @@ plotly.plot(data_y, graphOptions_y, function (err: any, msg: any) {
   if (err) return console.log('Error: '+ err);
   console.log(msg)
 });
-
-
+*/
