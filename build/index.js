@@ -7,7 +7,6 @@ const board_1 = require("./board");
 const lodash_1 = __importDefault(require("lodash"));
 var plotly = require('plotly')('chelless788', 'ZXtEkH2xIzKdrOtQa4EC');
 const ls_num = board_1.doStatistics();
-/*
 let x1 = ls_num[0].value;
 let x2 = ls_num[1].value;
 let x3 = ls_num[2].value;
@@ -20,19 +19,18 @@ let trace1 = {
     marker: {
         color: "red",
         line: {
-            color:  "grey",
-            width: 0
+            color: "red",
+            width: 0.2
         }
     },
-   opacity: 0.75,
-   type: "histogram",
-   xbins: {
-       end: 1000,
-       size: 1,
-       start: 0
+    opacity: 0.75,
+    type: "histogram",
+    xbins: {
+        end: 1000,
+        size: 1,
+        start: 0
     }
 };
- 
 let trace2 = {
     x: x2,
     autobinx: false,
@@ -40,20 +38,19 @@ let trace2 = {
     marker: {
         color: "green",
         line: {
-            color:  "blue",
-            width: 0
+            color: "blue",
+            width: 0.2
         }
     },
-   name: "Experiment 2",
-   opacity: 0.75,
-   type: "histogram",
-   xbins: {
-       end: 1000,
-       size: 1,
-       start: 0
+    name: "Experiment 2",
+    opacity: 0.75,
+    type: "histogram",
+    xbins: {
+        end: 1000,
+        size: 1,
+        start: 0
     }
 };
-
 let trace3 = {
     x: x3,
     histnorm: "count",
@@ -61,40 +58,34 @@ let trace3 = {
     marker: {
         color: "blue",
         line: {
-           color:  "rgb(184, 132, 11)",
-            width: 0
+            color: "blue",
+            width: 0.2
         }
     },
-   name: "Experiment 3",
-   opacity: 0.75,
-   type: "histogram",
-   xbins: {
-       end: 1000,
-       size: 1,
-       start: 0
+    name: "Experiment 3",
+    opacity: 0.75,
+    type: "histogram",
+    xbins: {
+        end: 1000,
+        size: 1,
+        start: 0
     }
 };
- 
 let data = [trace1, trace2, trace3];
-
 let layout = {
     bargap: 0.25,
     bargroupgap: 0.3,
     barmode: "overlay",
     title: "Sampled Results: Board Election Histogram Chart 3",
-    xaxis: {title: "Value"},
-    yaxis: {title: "Count"}
-}
-
-var graphOptions = {layout: layout, filenam: "overlaid-histogram", fileopt: 'overwrite'};
-
-
-plotly.plot(data, graphOptions, function (err: any, msg: any) {
-  if (err) return console.log('Error: '+ err);
-  console.log(msg)
+    xaxis: { title: "Value" },
+    yaxis: { title: "Count" }
+};
+var graphOptions = { layout: layout, filenam: "overlaid-histogram", fileopt: 'overwrite' };
+plotly.plot(data, graphOptions, function (err, msg) {
+    if (err)
+        return console.log('Error: ' + err);
+    console.log(msg);
 });
-
-*/
 let plt = [];
 ls_num.map((stat) => {
     plt.push(stat.value);
@@ -123,7 +114,7 @@ let trace_y1 = {
         color: "red",
         line: {
             color: "red",
-            width: 0
+            width: 0.2
         }
     },
     opacity: 0.75,
@@ -142,7 +133,7 @@ let trace_y2 = {
         color: "blue",
         line: {
             color: "blue",
-            width: 0
+            width: 0.2
         }
     },
     name: "Experiment 2",
@@ -162,7 +153,7 @@ let trace_y3 = {
         color: "green",
         line: {
             color: "green",
-            width: 0
+            width: 0.2
         }
     },
     name: "Experiment 3",

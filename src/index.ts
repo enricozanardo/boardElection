@@ -2,16 +2,14 @@ import { doStatistics } from "./board"
 import _, { Dictionary } from "lodash";
 
 
-
-
 var plotly = require('plotly')('chelless788', 'ZXtEkH2xIzKdrOtQa4EC')
-
 const ls_num = doStatistics();
 
-/*
+
 let x1 = ls_num[0].value;
 let x2 = ls_num[1].value;
 let x3 = ls_num[2].value;
+
 // Histogram X
 let trace1 = {
     x: x1,
@@ -95,7 +93,7 @@ plotly.plot(data, graphOptions, function (err: any, msg: any) {
   console.log(msg)
 });
 
-*/
+
 
 let plt: Array<number[]> = [];
 ls_num.map((stat) => {
@@ -199,4 +197,5 @@ plotly.plot(data_y, graphOptions_y, function (err: any, msg: any) {
   if (err) return console.log('Error: '+ err);
   console.log(msg)
 });
+
 
