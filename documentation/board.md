@@ -11,7 +11,7 @@ ECC of type Secp256k1:
     P(x1, y1);
     Q(x2, y2);
     
-![ECC](curve.jpg)
+![ECC](plots/curve.jpg)
     
      
 ## 2. Ticket Generator
@@ -59,7 +59,7 @@ Ticket n. 680 is the Leader of the Election.
 We could have several approaches to define the board members. For instance we could run the functions described into point 3 in a deterministic way (like splitting the hash in different parts) or more easily starting from the Leader ticket simple count another m (number of board members) consecutive tickets (ex. 681, 682, ... m-1, m).
 The fact that they are consecutive tickets do not matter because they are representing points that are far away one to each other.
 
-## Is the Board Election a pseudorandom generator?
+## 5. Is the Board Election a pseudorandom generator?
 
 In order to verify that the tickets exctraction is an uniformly distributed event, we made some simulations of the Board Election. In particular, each simulation is composed as follows: there are three independent lotteries, in each of them 1000 tickets are extracted.  We performed five of such simulations for a total of nine independent lotteries. For each simulation we show the corresponding histogram chart. 
 
@@ -70,9 +70,10 @@ In order to verify that the tickets exctraction is an uniformly distributed even
 ![hist_sim_5](plots/hist_sim_5.png)
 
 The Comulative Density Function (CDF) of a uniform random variable is a line in the plane. We plot the CDF of the tickets, just for the first simulation, since it follows always the same trend even for the other simulations. As expected, it shows a linear trend, with a really narrow error. 
-![CDF_Board_Election](plots/CDF_Board_Election.png)
 
-Finally, the CDF of the counts is showed (again just of the first simulation). Over the 80% of tickets have been chosen a maximum of two consecutive times. 
+![cdf_1](plots/cdf_1.png)
+
+Finally, the CDF of the counts is showed (again just of the first simulation). Over the 80% of tickets have been extracted for a maximum of two consecutive times. 
 
 ![cdf_count](plots/cdf_count.png)
 
