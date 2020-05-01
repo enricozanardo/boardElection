@@ -34,8 +34,8 @@ const myData: MyData[] = [];
 myData.push({exp: 'exp1', value: x1})
 myData.push({exp: 'exp2', value: x2})
 myData.push({exp: 'exp3', value: x3})
-console.log('myData: ' + myData)
-console.log(myData)
+console.log('myData:' + myData)
+
 
 //const json = JSON.stringify(myData)
 //console.log('JSON')
@@ -47,7 +47,7 @@ const opts = { fields }
 
 
 const csv = js2csv(myData, fields);
-fs.writeFile('documentation/csv/sim_1.csv', csv, function (err: any){
+fs.writeFile('documentation/csv/sim_5_.csv', csv, function (err: any){
     if (err) throw err;
     console.log('saved!');
 });

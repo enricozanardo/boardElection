@@ -26,20 +26,20 @@ function getTickets(
     //const hash_number = hexToBinary(hash)
     //console.log('hash_number: '+ hash_number)
     //let part_hash: number[] = intToVec(hash_number)
-    const part1 = hash.slice(0, 8);
-    const part2 = hash.slice(8, 16);
-    const part3 = hash.slice(16, 24);
-    const part4 = hash.slice(24, 32);
-    const part5 = hash.slice(32, 40);
-    const part6 = hash.slice(40, 48);
-    const part7 = hash.slice(48, 56);
-    const part8 = hash.slice(56, 64);
+    const part1 = hash.slice(0, 16);
+    const part2 = hash.slice(16, 32);
+    const part3 = hash.slice(32, 48);
+    const part4 = hash.slice(48, 64);
+    //const part5 = hash.slice(32, 40);
+    //const part6 = hash.slice(40, 48);
+    //const part7 = hash.slice(48, 56);
+    //const part8 = hash.slice(56, 64);
 
-    console.log(`2. transform the hash into a 4-nibble vector:  `);
+    console.log(`2. Split the hash into four parts:  `);
     console.log(`Part 1: ${part1}`);
-    console.log(`Part 2: ${part2[1]}`);
-    console.log(`Part 3: ${part3[2]}`);
-    console.log(`Part 4: ${part4[3]}`);
+    console.log(`Part 2: ${part2}`);
+    console.log(`Part 3: ${part3}`);
+    console.log(`Part 4: ${part4}`);
     //console.log(`Part 5: ${part5}`);
     //console.log(`Part 6: ${part6}`);
     //console.log(`Part 7: ${part7}`);
@@ -99,8 +99,8 @@ function getTickets(
     );
     */
     
-    const state_1 = Sub4Niblist(partsBinary)
-    const state_2 = shiftRow(state_1)
+    //const state_1 = Sub4Niblist(partsBinary)
+    const state_2 = shiftRow(partsBinary)
     const state_3 = mixCol(state_2)
     const state_4 = shiftRow(state_3)
     const state_5 = mixCol(state_4)
@@ -109,7 +109,7 @@ function getTickets(
     const state_8 = shiftRow(state_7)
     //const finalBinaryResult = (state_3[0] & state_3[3])^(state_3[1]&state_3[2]) 
     const finalBinaryResult = VecToInt(state_8)
-    var ticket = finalBinaryResult % 1000;
+    var ticket = (finalBinaryResult % 1000);
 
     console.log(`Decimal value: ${finalBinaryResult} `);
     console.log('Ticket: ' + ticket);
@@ -149,6 +149,7 @@ export function doStatistics(): Data[] {
     const tickets: Ticket[] = [];
     getTickets(hash, numberOfTickets, tickets);
     data.push({ key: hash, value: tickets });
+    console.log(data)
   }
 
   // console.log(JSON.stringify(data));
@@ -158,7 +159,7 @@ export function doStatistics(): Data[] {
   let plt: Array<number[]> = [];
   data.map((stat) => {
     // console.log(`Data Results: ${stat.key} - ${stat.value}`);
-    console.log(_.groupBy(stat.value));
+    //console.log(_.groupBy(stat.value));
     //console.log(stat.value)
     plt.push(stat.value)
   });
