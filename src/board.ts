@@ -1,4 +1,4 @@
-import { hexToBinary, binaryXOR } from './function';
+import { hexToBinary, binaryXOR, Sub4Niblist, shiftRow, mixCol, VecToInt, intToVec } from './function';
 import hasha from 'hasha';
 
 import _, { Dictionary } from 'lodash';
@@ -22,7 +22,10 @@ function getTickets(
     hash = hasha(hash, { algorithm: 'sha256' });
 
     console.log(`1. Starting hash: ${hash}`);
-
+    
+    //const hash_number = hexToBinary(hash)
+    //console.log('hash_number: '+ hash_number)
+    //let part_hash: number[] = intToVec(hash_number)
     const part1 = hash.slice(0, 8);
     const part2 = hash.slice(8, 16);
     const part3 = hash.slice(16, 24);
@@ -32,18 +35,19 @@ function getTickets(
     const part7 = hash.slice(48, 56);
     const part8 = hash.slice(56, 64);
 
-    console.log(`2. Split the hash in 8 parts:`);
+    console.log(`2. transform the hash into a 4-nibble vector:  `);
     console.log(`Part 1: ${part1}`);
-    console.log(`Part 2: ${part2}`);
-    console.log(`Part 3: ${part3}`);
-    console.log(`Part 4: ${part4}`);
-    console.log(`Part 5: ${part5}`);
-    console.log(`Part 6: ${part6}`);
-    console.log(`Part 7: ${part7}`);
-    console.log(`Part 8: ${part8}`);
+    console.log(`Part 2: ${part2[1]}`);
+    console.log(`Part 3: ${part3[2]}`);
+    console.log(`Part 4: ${part4[3]}`);
+    //console.log(`Part 5: ${part5}`);
+    //console.log(`Part 6: ${part6}`);
+    //console.log(`Part 7: ${part7}`);
+    //console.log(`Part 8: ${part8}`);
 
-    const partsHex = [part1, part2, part3, part4, part5, part6, part7, part8];
-    const partsBinary: string[] = [];
+    //const partsHex = [part1, part2, part3, part4, part5, part6, part7, part8];
+    const partsHex = [part1, part2, part3, part4];
+    const partsBinary: number[] = [];
 
     partsHex.map((part) => {
       partsBinary.push(hexToBinary(part));
@@ -55,11 +59,12 @@ function getTickets(
     console.log(`Binary Part 2:  ${partsBinary[1]}`);
     console.log(`Binary Part 3:  ${partsBinary[2]}`);
     console.log(`Binary Part 4:  ${partsBinary[3]}`);
-    console.log(`Binary Part 5:  ${partsBinary[4]}`);
-    console.log(`Binary Part 6:  ${partsBinary[5]}`);
-    console.log(`Binary Part 7:  ${partsBinary[6]}`);
-    console.log(`Binary Part 8:  ${partsBinary[7]}`);
+    //console.log(`Binary Part 5:  ${partsBinary[4]}`);
+    //console.log(`Binary Part 6:  ${partsBinary[5]}`);
+    //console.log(`Binary Part 7:  ${partsBinary[6]}`);
+    //console.log(`Binary Part 8:  ${partsBinary[7]}`);
 
+    /*
     console.log(
       `4. Compute the XOR between [part 1 - part 2] and [part 3 = part 4]`
     );
@@ -92,10 +97,21 @@ function getTickets(
     console.log(
       `6. Trasform the Binary number into a decimal number and compute the modulo N function`
     );
+    */
+    
+    const state_1 = Sub4Niblist(partsBinary)
+    const state_2 = shiftRow(state_1)
+    const state_3 = mixCol(state_2)
+    const state_4 = shiftRow(state_3)
+    const state_5 = mixCol(state_4)
+    const state_6 = shiftRow(state_5)
+    const state_7 = mixCol(state_6)
+    const state_8 = shiftRow(state_7)
+    //const finalBinaryResult = (state_3[0] & state_3[3])^(state_3[1]&state_3[2]) 
+    const finalBinaryResult = VecToInt(state_8)
+    var ticket = finalBinaryResult % 1000;
 
-    var ticket = parseInt(finalBinaryResult, 2) % 1000;
-
-    console.log(`Decimal value: ${parseInt(finalBinaryResult, 2)} `);
+    console.log(`Decimal value: ${finalBinaryResult} `);
     console.log('Ticket: ' + ticket);
 
     console.log(`7. Add the ticket to the list`);
@@ -137,13 +153,13 @@ export function doStatistics(): Data[] {
 
   // console.log(JSON.stringify(data));
   
-  console.log(data)
+  //console.log(data)
 
   let plt: Array<number[]> = [];
   data.map((stat) => {
     // console.log(`Data Results: ${stat.key} - ${stat.value}`);
     console.log(_.groupBy(stat.value));
-    console.log(stat.value)
+    //console.log(stat.value)
     plt.push(stat.value)
   });
 
@@ -151,7 +167,7 @@ export function doStatistics(): Data[] {
   plt.map( (ls) => {
     ls_dict.push(_.groupBy(ls))
   })
-  console.log(ls_dict)
+  //console.log(ls_dict)
   return data
 }
 
