@@ -50,9 +50,9 @@ function getTickets(
     const partsBinary: number[] = [];
 
     partsHex.map((part) => {
-      partsBinary.push(hexToBinary(part));
-    });
-
+      partsBinary.push(hexToBinary(part)); 
+    }); 
+    
     console.log(`3. Trasform each part into binary`);
 
     console.log(`Binary Part 1:  ${partsBinary[0]}`);
@@ -99,11 +99,20 @@ function getTickets(
     );
     */
     
+    console.log('Transform binary to 4 nibble vector')
+    const nib = VecToInt(partsBinary)
+    console.log(intToVec(nib))
+    console.log('first round partsBinary = '+ partsBinary)
+    
     //const state_1 = Sub4Niblist(partsBinary)
     const state_2 = shiftRow(partsBinary)
     const state_3 = mixCol(state_2)
+    console.log('second round state_3 = '+ state_3)
+    //const state_ = Sub4Niblist(state_3)
     const state_4 = shiftRow(state_3)
     const state_5 = mixCol(state_4)
+    console.log('third round state_5 = '+state_5)
+    //const state =Sub4Niblist(state_5)
     const state_6 = shiftRow(state_5)
     const state_7 = mixCol(state_6)
     const state_8 = shiftRow(state_7)
@@ -111,7 +120,7 @@ function getTickets(
     const finalBinaryResult = VecToInt(state_8)
     const r = Math.trunc(Math.random()*1000)<<8
     console.log("Random number: "+r)
-    var ticket = (finalBinaryResult & r) % 1000;
+    var ticket = (finalBinaryResult ^ r) % 1000;
 
     console.log(`Decimal value: ${finalBinaryResult} `);
     console.log('Ticket: ' + ticket);
@@ -129,7 +138,7 @@ function getTickets(
     // Recursion ..
     getTickets(new_hash, nextTicket, accumulator);
   }
-}
+}}
 
 type Data = {
   key: string;

@@ -83,11 +83,19 @@ function getTickets(hash, numberOfTickets, accumulator) {
           `6. Trasform the Binary number into a decimal number and compute the modulo N function`
         );
         */
+        console.log('Transform binary to 4 nibble vector');
+        const nib = function_1.VecToInt(partsBinary);
+        console.log(function_1.intToVec(nib));
+        console.log('first round partsBinary = ' + partsBinary);
         //const state_1 = Sub4Niblist(partsBinary)
         const state_2 = function_1.shiftRow(partsBinary);
         const state_3 = function_1.mixCol(state_2);
+        console.log('second round state_3 = ' + state_3);
+        //const state_ = Sub4Niblist(state_3)
         const state_4 = function_1.shiftRow(state_3);
         const state_5 = function_1.mixCol(state_4);
+        console.log('third round state_5 = ' + state_5);
+        //const state =Sub4Niblist(state_5)
         const state_6 = function_1.shiftRow(state_5);
         const state_7 = function_1.mixCol(state_6);
         const state_8 = function_1.shiftRow(state_7);
@@ -95,7 +103,7 @@ function getTickets(hash, numberOfTickets, accumulator) {
         const finalBinaryResult = function_1.VecToInt(state_8);
         const r = Math.trunc(Math.random() * 1000) << 8;
         console.log("Random number: " + r);
-        var ticket = (finalBinaryResult & r) % 1000;
+        var ticket = (finalBinaryResult ^ r) % 1000;
         console.log(`Decimal value: ${finalBinaryResult} `);
         console.log('Ticket: ' + ticket);
         console.log(`7. Add the ticket to the list`);

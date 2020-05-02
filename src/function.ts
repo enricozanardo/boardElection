@@ -74,7 +74,9 @@ export function Sub4Niblist(state: Array<number>): Array<number> {
   const sBox: Array<number> = [0, 0x4, 0xa, 0xb, 0xd, 0x1, 0x8, 0x5,
     0x6, 0x2, 0x0, 0x3, 0xc, 0xe, 0xf, 0x7]
   let state_: Array<number> = [];
-  for (let e in state) {
+  for (let e of state) {
+    console.log(e)
+    console.log(sBox[e])
     state_.push(sBox[e])
   }
   console.log(state_)
@@ -92,10 +94,10 @@ export function mixCol( s: Array<number>): Array<number> {
 
 export function VecToInt( s: number[]): number {
   // Convert a 4-nibble vector into a two-byte integer
-  return (s[0]<<12) + (s[2]<<8) + (s[1]<<4) + s[3]
+  return (s[0]<<8) + (s[2]<<4) + (s[1]<<2) + s[3]
 }
 
 export function intToVec(n: number): number[] {
   //convert a integer into a 4-nibble vector
-  return [n>>12, (n>>4) & 0xf, (n >> 8) & 0xf, n &0xf]
+  return [n>>8, (n>>4) & 0xf, (n >> 4) & 0xf, n &0xf]
 }

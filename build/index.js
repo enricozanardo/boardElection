@@ -20,7 +20,7 @@ console.log('myData:' + myData);
 const fields = ['exp', 'value'];
 const opts = { fields };
 const csv = js2csv(myData, fields);
-fs.writeFile('documentation/csv/sim_1_.csv', csv, function (err) {
+fs.writeFile('documentation/csv/sim_5_.csv', csv, function (err) {
     if (err)
         throw err;
     console.log('saved!');

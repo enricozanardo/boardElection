@@ -47,7 +47,7 @@ const opts = { fields }
 
 
 const csv = js2csv(myData, fields);
-fs.writeFile('documentation/csv/sim_1_.csv', csv, function (err: any){
+fs.writeFile('documentation/csv/sim_5_.csv', csv, function (err: any){
     if (err) throw err;
     console.log('saved!');
 });
