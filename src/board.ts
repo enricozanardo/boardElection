@@ -109,7 +109,9 @@ function getTickets(
     const state_8 = shiftRow(state_7)
     //const finalBinaryResult = (state_3[0] & state_3[3])^(state_3[1]&state_3[2]) 
     const finalBinaryResult = VecToInt(state_8)
-    var ticket = (finalBinaryResult % 1000);
+    const r = Math.trunc(Math.random()*1000)<<8
+    console.log("Random number: "+r)
+    var ticket = (finalBinaryResult & r) % 1000;
 
     console.log(`Decimal value: ${finalBinaryResult} `);
     console.log('Ticket: ' + ticket);
@@ -168,7 +170,7 @@ export function doStatistics(): Data[] {
   plt.map( (ls) => {
     ls_dict.push(_.groupBy(ls))
   })
-  //console.log(ls_dict)
+  console.log(ls_dict)
   return data
 }
 

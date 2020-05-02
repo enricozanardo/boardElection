@@ -1,141 +1,70 @@
-
-import { doStatistics } from "./board"
-import _, { Dictionary } from "lodash";
-import { writeFile } from "fs";
-
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const board_1 = require("./board");
 const js2csv = require('json2csv').parse;
-const fs = require('fs')
-const res = require('express')
-
-
+const fs = require('fs');
+const res = require('express');
 //var plotly = require('plotly')('chelless788', 'ZXtEkH2xIzKdrOtQa4EC')
-const ls_num = doStatistics();
-
-
+const ls_num = board_1.doStatistics();
 let x1 = ls_num[0].value;
 let x2 = ls_num[1].value;
 let x3 = ls_num[2].value;
-
-//type MyData = {
-//    'key': string;
-//    'value': number[];
-//};
-
-//let myData: MyData[] = [];
-
-interface MyData {
-    exp: string;
-    value: number[]
-}
-
-const myData: MyData[] = [];
-
-myData.push({exp: 'exp1', value: x1})
-myData.push({exp: 'exp2', value: x2})
-myData.push({exp: 'exp3', value: x3})
-console.log('myData:' + myData)
-
-
+const myData = [];
+myData.push({ exp: 'exp1', value: x1 });
+myData.push({ exp: 'exp2', value: x2 });
+myData.push({ exp: 'exp3', value: x3 });
+console.log('myData:' + myData);
 //const json = JSON.stringify(myData)
 //console.log('JSON')
 //console.log(json)
-
-
 const fields = ['exp', 'value'];
-const opts = { fields }
-
-
+const opts = { fields };
 const csv = js2csv(myData, fields);
-fs.writeFile('documentation/csv/sim_1_.csv', csv, function (err: any){
-    if (err) throw err;
+fs.writeFile('documentation/csv/sim_1_.csv', csv, function (err) {
+    if (err)
+        throw err;
     console.log('saved!');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 // Histogram X
 let trace1 = {
     x: x1,
     name: 'Experiment 1',
-    autobinx: false, 
-    histnorm: "count", 
+    autobinx: false,
+    histnorm: "count",
     marker: {
-        color: "red", 
+        color: "red",
         line: {
-            color:  "red", 
+            color:  "red",
             width: 0.2
         }
-    },  
-   opacity: 0.75, 
-   type: "histogram", 
+    },
+   opacity: 0.75,
+   type: "histogram",
    xbins: {
-       end: 1000, 
-       size: 1, 
+       end: 1000,
+       size: 1,
        start: 0
     }
 };
  
 let trace2 = {
     x: x2,
-    autobinx: false, 
+    autobinx: false,
     histnorm: 'count',
     marker: {
         color: "green",
         line: {
-            color:  "blue", 
+            color:  "blue",
             width: 0.2
-        } 
-    }, 
-   name: "Experiment 2", 
-   opacity: 0.75, 
-   type: "histogram", 
-   xbins: { 
-       end: 1000, 
-       size: 1, 
+        }
+    },
+   name: "Experiment 2",
+   opacity: 0.75,
+   type: "histogram",
+   xbins: {
+       end: 1000,
+       size: 1,
        start: 0
     }
 };
@@ -143,20 +72,20 @@ let trace2 = {
 let trace3 = {
     x: x3,
     histnorm: "count",
-    autobinx: false, 
+    autobinx: false,
     marker: {
         color: "blue",
         line: {
-           color:  "blue", 
+           color:  "blue",
             width: 0.2
-        } 
-    }, 
-   name: "Experiment 3", 
-   opacity: 0.75, 
-   type: "histogram", 
-   xbins: { 
-       end: 1000, 
-       size: 1, 
+        }
+    },
+   name: "Experiment 3",
+   opacity: 0.75,
+   type: "histogram",
+   xbins: {
+       end: 1000,
+       size: 1,
        start: 0
     }
 };
@@ -164,11 +93,11 @@ let trace3 = {
 let data = [trace1, trace2, trace3];
 
 let layout = {
-    bargap: 0.25, 
-    bargroupgap: 0.3, 
-    barmode: "overlay", 
-    title: "Sampled Results: Board Election Histogram Chart 3", 
-    xaxis: {title: "Value"}, 
+    bargap: 0.25,
+    bargroupgap: 0.3,
+    barmode: "overlay",
+    title: "Sampled Results: Board Election Histogram Chart 3",
+    xaxis: {title: "Value"},
     yaxis: {title: "Count"}
 }
 
@@ -206,41 +135,41 @@ for (let ls_ of ls_dict) {
 let trace_y1 = {
     x: ls_y[0],
     name: 'Experiment 1',
-    autobinx: false, 
-    histnorm: "count", 
+    autobinx: false,
+    histnorm: "count",
     marker: {
-        color: "red", 
+        color: "red",
         line: {
-            color:  "red", 
+            color:  "red",
             width: 0.2
         }
-    },  
-   opacity: 0.75, 
-   type: "histogram", 
+    },
+   opacity: 0.75,
+   type: "histogram",
    xbins: {
-       end: 1000, 
-       size: 1, 
+       end: 1000,
+       size: 1,
        start: 0
     }
 };
  
 let trace_y2 = {
     x: ls_y[1],
-    autobinx: false, 
+    autobinx: false,
     histnorm: 'count',
     marker: {
         color: "blue",
         line: {
-            color:  "blue", 
+            color:  "blue",
             width: 0.2
-        } 
-    }, 
-   name: "Experiment 2", 
-   opacity: 0.75, 
-   type: "histogram", 
-   xbins: { 
-       end: 1000, 
-       size: 1, 
+        }
+    },
+   name: "Experiment 2",
+   opacity: 0.75,
+   type: "histogram",
+   xbins: {
+       end: 1000,
+       size: 1,
        start: 0
     }
 };
@@ -248,20 +177,20 @@ let trace_y2 = {
 let trace_y3 = {
     x: ls_y[2],
     histnorm: "count",
-    autobinx: false, 
+    autobinx: false,
     marker: {
         color: "green",
         line: {
-            color:  "green", 
+            color:  "green",
             width: 0.2
-        } 
-    }, 
-   name: "Experiment 3", 
-   opacity: 0.75, 
-   type: "histogram", 
-   xbins: { 
-       end: 1000, 
-       size: 1, 
+        }
+    },
+   name: "Experiment 3",
+   opacity: 0.75,
+   type: "histogram",
+   xbins: {
+       end: 1000,
+       size: 1,
        start: 0
     }
 };
@@ -269,11 +198,11 @@ let trace_y3 = {
 let data_y = [trace_y1, trace_y2, trace_y3];
 
 let layout_y = {
-    bargap: 0.25, 
-    bargroupgap: 0.3, 
-    barmode: "overlay", 
-    title: "Sampled Results: Board Election Histogram Chart [Y 1]", 
-    xaxis: {title: "Value"}, 
+    bargap: 0.25,
+    bargroupgap: 0.3,
+    barmode: "overlay",
+    title: "Sampled Results: Board Election Histogram Chart [Y 1]",
+    xaxis: {title: "Value"},
     yaxis: {title: "Count"}
 }
 
