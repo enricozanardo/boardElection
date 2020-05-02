@@ -130,8 +130,8 @@ export function doStatistics(): Data[] {
 
   for (let i = 0; i < iteractions; i++) {
     let random =
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15);
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15);
     let hash = hasha(random, { algorithm: 'sha256' });
     const tickets: Ticket[] = [];
     getTickets(hash, numberOfTickets, tickets);
@@ -144,7 +144,7 @@ export function doStatistics(): Data[] {
 
   let plt: Array<number[]> = [];
   data.map((stat) => {
-    // console.log(`Data Results: ${stat.key} - ${stat.value}`);
+    //console.log(`Data Results: ${stat.key} - ${stat.value}`);
     console.log(_.groupBy(stat.value));
     console.log(stat.value)
     plt.push(stat.value)
@@ -157,6 +157,3 @@ export function doStatistics(): Data[] {
   console.log(ls_dict)
   return data
 }
-
-
-

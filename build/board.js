@@ -93,7 +93,7 @@ function doStatistics() {
     console.log(data);
     let plt = [];
     data.map((stat) => {
-        // console.log(`Data Results: ${stat.key} - ${stat.value}`);
+        //console.log(`Data Results: ${stat.key} - ${stat.value}`);
         console.log(lodash_1.default.groupBy(stat.value));
         console.log(stat.value);
         plt.push(stat.value);
