@@ -26,31 +26,33 @@ function getTickets(
     //const hash_number = hexToBinary(hash)
     //console.log('hash_number: '+ hash_number)
     //let part_hash: number[] = intToVec(hash_number)
-    const part1 = hash.slice(0, 16);
-    const part2 = hash.slice(16, 32);
-    const part3 = hash.slice(32, 48);
-    const part4 = hash.slice(48, 64);
-    //const part5 = hash.slice(32, 40);
-    //const part6 = hash.slice(40, 48);
-    //const part7 = hash.slice(48, 56);
-    //const part8 = hash.slice(56, 64);
+    const part1 = hash.slice(0, 8);
+    const part2 = hash.slice(8, 16);
+    const part3 = hash.slice(16, 24);
+    const part4 = hash.slice(24, 32);
+    const part5 = hash.slice(32, 40);
+    const part6 = hash.slice(40, 48);
+    const part7 = hash.slice(48, 56);
+    const part8 = hash.slice(56, 64);
 
-    console.log(`2. Split the hash into four parts:  `);
+    console.log(`2. Split the hash into eight parts:  `);
     console.log(`Part 1: ${part1}`);
     console.log(`Part 2: ${part2}`);
     console.log(`Part 3: ${part3}`);
     console.log(`Part 4: ${part4}`);
-    //console.log(`Part 5: ${part5}`);
-    //console.log(`Part 6: ${part6}`);
-    //console.log(`Part 7: ${part7}`);
-    //console.log(`Part 8: ${part8}`);
+    console.log(`Part 5: ${part5}`);
+    console.log(`Part 6: ${part6}`);
+    console.log(`Part 7: ${part7}`);
+    console.log(`Part 8: ${part8}`);
 
-    //const partsHex = [part1, part2, part3, part4, part5, part6, part7, part8];
-    const partsHex = [part1, part2, part3, part4];
-    const partsBinary: number[] = [];
+    const partsHex = [part1, part2, part3, part4, part5, part6, part7, part8];
+    //const partsHex = [part1, part2, part3, part4];
+    const partsBinary: string[] = [];
 
     partsHex.map((part) => {
-      partsBinary.push(hexToBinary(part)); 
+      //console.log(parseInt(hexToBinary(part), 2))
+      const binary: string = hexToBinary(part)
+      partsBinary.push(binary)
     }); 
     
     console.log(`3. Trasform each part into binary`);
@@ -59,14 +61,14 @@ function getTickets(
     console.log(`Binary Part 2:  ${partsBinary[1]}`);
     console.log(`Binary Part 3:  ${partsBinary[2]}`);
     console.log(`Binary Part 4:  ${partsBinary[3]}`);
-    //console.log(`Binary Part 5:  ${partsBinary[4]}`);
-    //console.log(`Binary Part 6:  ${partsBinary[5]}`);
-    //console.log(`Binary Part 7:  ${partsBinary[6]}`);
-    //console.log(`Binary Part 8:  ${partsBinary[7]}`);
+    console.log(`Binary Part 5:  ${partsBinary[4]}`);
+    console.log(`Binary Part 6:  ${partsBinary[5]}`);
+    console.log(`Binary Part 7:  ${partsBinary[6]}`);
+    console.log(`Binary Part 8:  ${partsBinary[7]}` );
 
-    /*
+    
     console.log(
-      `4. Compute the XOR between [part 1 - part 2] and [part 3 = part 4]`
+      `4. Compute the XOR between [part 1 / part 2] and [part 3 / part 4]`
     );
     const partialResult1 = binaryXOR(partsBinary[0], partsBinary[1]);
     const partialResult2 = binaryXOR(partsBinary[2], partsBinary[3]);
@@ -74,12 +76,17 @@ function getTickets(
     console.log('Partial Result 1: ' + partialResult1);
     console.log('Partial Result 2: ' + partialResult2);
 
+    console.log(
+      `5. Compute the XOR between [part 5 / part 6] and [part 7 / part 8]`
+    );
     const partialResult3 = binaryXOR(partsBinary[4], partsBinary[5]);
     const partialResult4 = binaryXOR(partsBinary[6], partsBinary[7]);
+
 
     console.log('Partial Result 3: ' + partialResult3);
     console.log('Partial Result 4: ' + partialResult4);
 
+  /*
     const partialResult5 = binaryXOR(partialResult1, partialResult2);
     const partialResult6 = binaryXOR(partialResult3, partialResult4);
 
@@ -97,30 +104,37 @@ function getTickets(
     console.log(
       `6. Trasform the Binary number into a decimal number and compute the modulo N function`
     );
-    */
+  */
     
-    console.log('Transform binary to 4 nibble vector')
-    const nib = VecToInt(partsBinary)
-    console.log(intToVec(nib))
-    console.log('first round partsBinary = '+ partsBinary)
+
     
-    //const state_1 = Sub4Niblist(partsBinary)
-    const state_2 = shiftRow(partsBinary)
+    const partialR: number[] = [parseInt(partialResult1, 2), parseInt(partialResult2, 2), 
+      parseInt(partialResult3, 2), parseInt(partialResult4, 2)]
+    // assuring to obtain 4-bit number
+    for (var i = 0; i < partialR.length; i++) {
+      partialR[i] = Math.abs(partialR[i] >> 27)
+    }
+    const nib = VecToInt(partialR)
+    console.log('nib: '+nib)
+    console.log('first round partsBinary = '+ partialR)
+  
+    const state_1 = Sub4Niblist(partialR)
+    const state_2 = shiftRow(state_1)
     const state_3 = mixCol(state_2)
     console.log('second round state_3 = '+ state_3)
-    //const state_ = Sub4Niblist(state_3)
+    const state_ = Sub4Niblist(state_3)
     const state_4 = shiftRow(state_3)
     const state_5 = mixCol(state_4)
     console.log('third round state_5 = '+state_5)
-    //const state =Sub4Niblist(state_5)
-    const state_6 = shiftRow(state_5)
+    const state =Sub4Niblist(state_5)
+    const state_6 = shiftRow(state)
     const state_7 = mixCol(state_6)
     const state_8 = shiftRow(state_7)
     //const finalBinaryResult = (state_3[0] & state_3[3])^(state_3[1]&state_3[2]) 
     const finalBinaryResult = VecToInt(state_8)
     const r = Math.trunc(Math.random()*1000)<<8
     console.log("Random number: "+r)
-    var ticket = (finalBinaryResult ^ r) % 1000;
+    var ticket = (finalBinaryResult) % 1000;
 
     console.log(`Decimal value: ${finalBinaryResult} `);
     console.log('Ticket: ' + ticket);
@@ -138,7 +152,7 @@ function getTickets(
     // Recursion ..
     getTickets(new_hash, nextTicket, accumulator);
   }
-}}
+}
 
 type Data = {
   key: string;

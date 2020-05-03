@@ -13,7 +13,10 @@ const myData = [];
 myData.push({ exp: 'exp1', value: x1 });
 myData.push({ exp: 'exp2', value: x2 });
 myData.push({ exp: 'exp3', value: x3 });
-console.log('myData:' + myData);
+console.log('Check that length is the same for all experiments:');
+console.log(myData[0].value.length);
+console.log(myData[1].value.length);
+console.log(myData[2].value.length);
 //const json = JSON.stringify(myData)
 //console.log('JSON')
 //console.log(json)

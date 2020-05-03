@@ -1,37 +1,38 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var lookup = {
-    '0': 0b0000,
-    '1': 0b0001,
-    '2': 0b0010,
-    '3': 0b0011,
-    '4': 0b0100,
-    '5': 0b0101,
-    '6': 0b0110,
-    '7': 0b0111,
-    '8': 0b1000,
-    '9': 0b1001,
-    'a': 0b1010,
-    'b': 0b1011,
-    'c': 0b1100,
-    'd': 0b1101,
-    'e': 0b1110,
-    'f': 0b1111,
-    'A': 0b1010,
-    'B': 0b1011,
-    'C': 0b1100,
-    'D': 0b1101,
-    'E': 0b1110,
-    'F': 0b1111,
+    '0': '0000',
+    '1': '0001',
+    '2': '0010',
+    '3': '0011',
+    '4': '0100',
+    '5': '0101',
+    '6': '0110',
+    '7': '0111',
+    '8': '1000',
+    '9': '1001',
+    'a': '1010',
+    'b': '1011',
+    'c': '1100',
+    'd': '1101',
+    'e': '1110',
+    'f': '1111',
+    'A': '1010',
+    'B': '1011',
+    'C': '1100',
+    'D': '1101',
+    'E': '1110',
+    'F': '1111',
 };
 function hexToBinary(s) {
-    let ret = 0b0;
+    let ret = '';
     for (var i = 0, len = s.length; i < len; i++) {
         ret += lookup[s[i]];
     }
     return ret;
 }
 exports.hexToBinary = hexToBinary;
+;
 function binaryXOR(s1, s2) {
     let result = '';
     if (s1.length != s2.length) {
@@ -73,11 +74,11 @@ function Sub4Niblist(state) {
         0x6, 0x2, 0x0, 0x3, 0xc, 0xe, 0xf, 0x7];
     let state_ = [];
     for (let e of state) {
-        console.log(e);
-        console.log(sBox[e]);
+        //console.log(e)
+        console.log('sBox[e]: ' + sBox[e]);
         state_.push(sBox[e]);
     }
-    console.log(state_);
+    //console.log(state_)
     return state_;
 }
 exports.Sub4Niblist = Sub4Niblist;
@@ -92,7 +93,7 @@ function mixCol(s) {
 exports.mixCol = mixCol;
 function VecToInt(s) {
     // Convert a 4-nibble vector into a two-byte integer
-    return (s[0] << 8) + (s[2] << 4) + (s[1] << 2) + s[3];
+    return (s[0] << 24) + (s[2] << 20) + (s[1] << 16) + s[3];
 }
 exports.VecToInt = VecToInt;
 function intToVec(n) {
