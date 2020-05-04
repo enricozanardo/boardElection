@@ -63,8 +63,9 @@ function getTickets(hash, numberOfTickets, accumulator) {
         const finalBinaryResult = function_1.binaryXOR(partialResult5, partialResult6);
         console.log('Final Result    : ' + finalBinaryResult);
         console.log(`6. Trasform the Binary number into a decimal number and compute the modulo N function`);
-        var ticket = (parseInt(finalBinaryResult, 2) + Math.trunc(Math.random() * 100)) % 1000;
+        //var ticket = (parseInt(finalBinaryResult, 2) + Math.trunc(Math.random()*100)) % 1000;
         //var ticket = Math.abs(fBr % 1000);
+        var ticket = parseInt(finalBinaryResult, 2) % 1000;
         console.log(`Decimal value: ${parseInt(finalBinaryResult, 2)} `);
         console.log('Ticket: ' + ticket);
         console.log(`7. Add the ticket to the list`);
@@ -79,8 +80,8 @@ function getTickets(hash, numberOfTickets, accumulator) {
 }
 function doStatistics() {
     const data = [];
-    const iteractions = 3;
-    const numberOfTickets = 1000;
+    const iteractions = 10;
+    const numberOfTickets = 200;
     for (let i = 0; i < iteractions; i++) {
         let random = Math.random().toString(36).substring(2, 15) +
             Math.random().toString(36).substring(2, 15);
@@ -95,7 +96,7 @@ function doStatistics() {
     data.map((stat) => {
         //console.log(`Data Results: ${stat.key} - ${stat.value}`);
         console.log(lodash_1.default.groupBy(stat.value));
-        console.log(stat.value);
+        //console.log(stat.value)
         plt.push(stat.value);
     });
     const ls_dict = [];

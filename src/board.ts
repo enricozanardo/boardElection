@@ -95,8 +95,9 @@ function getTickets(
       `6. Trasform the Binary number into a decimal number and compute the modulo N function`
     );
 
-    var ticket = (parseInt(finalBinaryResult, 2) + Math.trunc(Math.random()*100)) % 1000;
+    //var ticket = (parseInt(finalBinaryResult, 2) + Math.trunc(Math.random()*100)) % 1000;
     //var ticket = Math.abs(fBr % 1000);
+    var ticket = parseInt(finalBinaryResult, 2) % 1000;
 
     console.log(`Decimal value: ${parseInt(finalBinaryResult, 2)} `);
     console.log('Ticket: ' + ticket);
@@ -124,8 +125,8 @@ type Data = {
 
 export function doStatistics(): Data[] {
   const data: Data[] = [];
-  const iteractions = 3;
-  const numberOfTickets = 1000;
+  const iteractions = 10;
+  const numberOfTickets = 200;
   
 
   for (let i = 0; i < iteractions; i++) {
@@ -146,7 +147,7 @@ export function doStatistics(): Data[] {
   data.map((stat) => {
     //console.log(`Data Results: ${stat.key} - ${stat.value}`);
     console.log(_.groupBy(stat.value));
-    console.log(stat.value)
+    //console.log(stat.value)
     plt.push(stat.value)
   });
 

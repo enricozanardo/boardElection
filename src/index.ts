@@ -16,6 +16,14 @@ const ls_num = doStatistics();
 let x1 = ls_num[0].value;
 let x2 = ls_num[1].value;
 let x3 = ls_num[2].value;
+let x4 = ls_num[3].value;
+let x5 = ls_num[4].value;
+let x6 = ls_num[5].value;
+let x7 = ls_num[6].value;
+let x8 = ls_num[7].value;
+let x9 = ls_num[8].value;
+let x10 = ls_num[9].value;
+
 
 //type MyData = {
 //    'key': string;
@@ -34,6 +42,13 @@ const myData: MyData[] = [];
 myData.push({exp: 'exp1', value: x1})
 myData.push({exp: 'exp2', value: x2})
 myData.push({exp: 'exp3', value: x3})
+myData.push({exp: 'exp4', value: x4})
+myData.push({exp: 'exp5', value: x5})
+myData.push({exp: 'exp6', value: x6})
+myData.push({exp: 'exp7', value: x7})
+myData.push({exp: 'exp8', value: x8})
+myData.push({exp: 'exp9', value: x9})
+myData.push({exp: 'exp10', value: x10})
 console.log('myData: ' + myData)
 console.log(myData)
 
@@ -45,9 +60,9 @@ console.log(myData)
 const fields = ['exp', 'value'];
 const opts = { fields }
 
-
+console.log('Check correctness length: '+myData[0].value.length)
 const csv = js2csv(myData, fields);
-fs.writeFile('documentation/csv/sim_1.csv', csv, function (err: any){
+fs.writeFile('documentation/csv/sim_200t.csv', csv, function (err: any){
     if (err) throw err;
     console.log('saved!');
 });
