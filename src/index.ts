@@ -24,14 +24,6 @@ let x8 = ls_num[7].value;
 let x9 = ls_num[8].value;
 let x10 = ls_num[9].value;
 
-
-//type MyData = {
-//    'key': string;
-//    'value': number[];
-//};
-
-//let myData: MyData[] = [];
-
 interface MyData {
     exp: string;
     value: number[]
